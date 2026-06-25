@@ -139,6 +139,17 @@
                         <p class="copy">Aurena is a local-first desktop music system built around a <strong>micro-kernel host</strong> that loads feature plugins at runtime.</p>
                         <p class="copy">The host is intentionally minimal. Almost all user-facing functionality — library management, playback engines, retro formats, playlists, podcasts, encoding, and remote control — is implemented as independent plugin modules.</p>
 
+                        <p class="arch__lead">Architecture at a glance:</p>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Plugin-based microkernel desktop app</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Single-process, shared DI container</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Modular EF Core contexts over one SQLite file</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">In-process event bus (domain and integration events)</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Strict module boundaries enforced via internal</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Reactive UI + Avalonia host shell</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Real-time web + remote control layer</p></div>
+                        </div>
+                        
                         <p class="arch__lead">All plugins share three things:</p>
                         <div class="feature-list">
                             <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">One process, one DI container</p></div>
