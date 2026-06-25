@@ -166,7 +166,7 @@ class Component extends DCLogic {
 
       libraryFeatures: [
         { title: 'Media Pools', body: 'register multiple roots — local drives, NAS shares, external disks — and Aurena treats them as one unified library.' },
-        { title: 'Album grid & list', body: 'browse a wall of artwork or a dense, scannable list.' },
+        { title: 'Album grid & list', body: 'browse a wall of artwork or use the intelligent search to find that album or track.' },
         { title: 'Multi-disc done right', body: 'box sets are modelled properly, not flattened into one blob.' },
         { title: 'Proper artwork management', body: 'folder-synced cover art and caching, not fragile embedded-only tags.' },
         { title: 'Fast fuzzy full-text search', body: 'Lucene-backed, so typos and near-misses still find the track.' },
