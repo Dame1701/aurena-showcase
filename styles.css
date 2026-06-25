@@ -691,12 +691,25 @@ strong { color: var(--ink); font-weight: 700; }
   box-shadow: 0 0 26px rgba(142,114,242,.38), inset 0 0 14px rgba(142,114,242,.1);
 }
 .arch__summary .eyebrow { margin-bottom: 10px; }
+.arch__hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--t-700);
+  margin-left: 10px;
+  white-space: nowrap;
+  vertical-align: baseline;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+.arch[open] .arch__hint { opacity: 0; }
 .arch__title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(20px,2.6vw,28px);
   letter-spacing: -.01em;
-  line-height: 1.15;
+  line-height: 1.1;
   margin: 0;
 }
 .arch__chevron {
@@ -718,7 +731,7 @@ strong { color: var(--ink); font-weight: 700; }
 }
 .arch[open] .arch__chevron { transform: rotate(180deg); }
 .arch__body {
-  padding: 24px 0 0;
+  padding: 4px 0 0;
 }
 .arch__body > * + * { margin-top: 18px; }
 .arch__lead { margin: 32px 0 0; font-weight: 600; font-size: 16px; color: var(--ink-soft); }
