@@ -211,8 +211,8 @@ class Component extends DCLogic {
 
       platforms: [
         { name: 'Linux', body: 'Primary target — even runs as a Raspberry Pi 5 hi-fi kiosk appliance.' },
-        { name: 'Windows', body: 'Supported — audio runtime bundled, nothing extra to install.' },
-        { name: 'macOS', body: 'Fully supported, on par with Linux (CD ripping is the one exception).' }
+        { name: 'macOS', body: 'Fully supported, on par with Linux (CD ripping is the one exception).' },
+        { name: 'Windows', body: 'Supported — audio runtime bundled, nothing extra to install.' }
       ],
 
       stack: ['.NET 10','Avalonia','ReactiveUI','EF Core + SQLite','GStreamer','Lucene.NET','TagLibSharp','Chromaprint','AcoustID','MusicBrainz','Angular'].map(n => ({ name: n }))
