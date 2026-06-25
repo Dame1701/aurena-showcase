@@ -1,647 +1,496 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="styles.css">
-<script src="./support.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
-<helmet>
-<link rel="icon" href="img/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-</helmet>
+    <helmet>
+        <link rel="icon" href="img/icon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+              rel="stylesheet">
+    </helmet>
 
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" rx="20" fill="#0b0a0c"/>
-    <rect x="30" y="30" width="40" height="40" rx="10" fill="#8E72F2"/>
-    <circle cx="50" cy="50" r="7" fill="#0b0a0c"/>
-  </svg>
-</template>
+    <template id="__bundler_thumbnail">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="20" fill="#0b0a0c"/>
+            <rect x="30" y="30" width="40" height="40" rx="10" fill="#8E72F2"/>
+            <circle cx="50" cy="50" r="7" fill="#0b0a0c"/>
+        </svg>
+    </template>
 
-<div class="page">
+    <div class="page">
 
-<!-- ============ AURORA BACKGROUND ============ -->
-<div class="aurora" aria-hidden="true">
-  <div class="aurora__blob aurora__blob--1"></div>
-  <div class="aurora__blob aurora__blob--2"></div>
-  <div class="aurora__blob aurora__blob--3"></div>
-  <div class="aurora__blob aurora__blob--4"></div>
-</div>
-
-<!-- ============ NAV ============ -->
-<nav class="nav">
-  <a href="#top" class="nav__brand">
-    <img src="img/icon.png" alt="Aurena" class="brand-icon">
-    <span class="brand-name">Aurena</span>
-  </a>
-  <div class="nav__links">
-    <a href="#sound" class="nav__link">Sound</a>
-    <a href="#library" class="nav__link">Library</a>
-    <a href="#retro" class="nav__link">Retro</a>
-    <a href="#remote" class="nav__link">Remote</a>
-    <a href="#specs" class="nav__link">Specs</a>
-    <a href="#download" data-cta="download" class="btn btn--primary btn--sm">Coming soon</a>
-  </div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<header id="top" class="hero">
-  <!-- ambient glow -->
-  <div class="hero__glow"></div>
-  <!-- ambient VU field -->
-  <div class="vu-field" aria-hidden="true">
-    <sc-for list="{{ vuBars }}" as="b" hint-placeholder-count="48">
-      <span class="vu-bar" style="animation:auVu {{ b.dur }} ease-in-out infinite;animation-delay:{{ b.delay }};"></span>
-    </sc-for>
-  </div>
-
-  <div class="hero__inner">
-    <div class="hero__brand">
-      <img src="img/icon.png" alt="Aurena app icon" class="hero__icon">
-      <span class="hero__wordmark">Aurena</span>
-    </div>
-    <div class="pill">
-      <span class="pill__dot"></span>Free · Local-first · Cross-platform
-    </div>
-    <h1 class="hero__title">Own your music.<br>Play it <em>anywhere.</em></h1>
-    <p class="hero__sub">A modular music player and library manager for people who actually <em>care</em> about their collection — from lossless FLAC to Commodore&nbsp;64 SID, on your desktop, your phone, and your hi-fi.</p>
-    <div class="btn-row">
-      <a href="#download" data-cta="download" class="btn btn--primary btn--md" style-hover="box-shadow:0 14px 48px rgba(244,242,238,.2),0 0 34px rgba(142,114,242,.28);transform:translateY(-1px);">Coming soon</a>
-      <a href="#sound" class="btn btn--ghost btn--md" style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">See the features ↓</a>
-    </div>
-  </div>
-
-  <!-- hero shot -->
-  <div class="hero-shot" data-reveal>
-    <div class="hero-shot__glow"></div>
-    <img onClick="{{ zoomHero }}" src="img/hero.webp" width="2200" height="1539" fetchpriority="high" decoding="async" alt="Aurena — the album wall with now playing">
-  </div>
-
-  <div class="hero-intro panel">
-    <p class="lead"><strong>Not another streaming app.</strong> Aurena lives on <em>your</em> hardware, manages <em>your</em> files, and answers to nobody's recommendation engine. Your library never leaves your network.</p>
-  </div>
-</header>
-
-<!-- ============ WHY DIFFERENT ============ -->
-<section class="section">
-  <div class="container">
-    <div class="block-head" data-reveal>
-      <div class="eyebrow">// One app that does it all</div>
-      <h2 class="heading-xl">You shouldn't need five apps to manage one collection.</h2>
-      <p class="lead lead--dim">Plenty of players nail some of these but Aurena aims to pull everything together inside of one easy to use and unified app. It streams, it tags, it plays chiptunes and makes your library available on all of your devices.</p>
-    </div>
-    <div class="card-grid">
-      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="7">
-        <div class="card card--feature" data-reveal>
-          <div class="card__num">{{ p.num }}</div>
-          <h3 class="card__title">{{ p.title }}</h3>
-          <p class="card__body">{{ p.body }}</p>
+        <!-- ============ AURORA BACKGROUND ============ -->
+        <div class="aurora" aria-hidden="true">
+            <div class="aurora__blob aurora__blob--1"></div>
+            <div class="aurora__blob aurora__blob--2"></div>
+            <div class="aurora__blob aurora__blob--3"></div>
+            <div class="aurora__blob aurora__blob--4"></div>
         </div>
-      </sc-for>
-    </div>
-    <div class="callout" data-reveal>
-      <p class="callout__text">Any one of these you can find elsewhere. All of them, working together, on hardware you own? <span class="grad-text">That's Aurena.</span></p>
-    </div>
-  </div>
-</section>
 
-<!-- ============ RASPBERRY PI ============ -->
-<section class="section">
-  <div class="container">
-    <div class="feature-row feature-row--reverse">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// Raspberry Pi ready</div>
-        <h2 class="heading">Turn a £90 board into a dedicated music system.</h2>
-        <p class="copy">Built for the Raspberry Pi 5 — turn an affordable single-board computer into a dedicated music system. It boots straight into Aurena, <strong>no desktop environment needed</strong>.</p>
-        <p class="copy copy--muted">Connect to your amp via HDMI, analogue, or Bluetooth, then drive it from your TV's kiosk interface or remotely from a phone, tablet, or laptop. Living-room centrepiece or fully headless — your call.</p>
-      </div>
-      <div class="col-media" data-reveal>
-        <div class="glow"></div>
-        <img onClick="{{ zoomPi }}" src="img/pi-kiosk.webp" width="1600" height="1000" decoding="async" loading="lazy" alt="Pi 5 hi-fi kiosk on a TV — now playing on the big screen" class="shot shot--zoom">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SOUND ============ -->
-<section id="sound" class="section">
-  <div class="container">
-    <div class="feature-row">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// Sound you can trust</div>
-        <h2 class="heading">It has to sound right first. Everything else is secondary.</h2>
-        <p class="copy copy--gap">A playback chain built on GStreamer and tuned for serious listening.</p>
-        <div class="feature-list">
-          <sc-for list="{{ soundFeatures }}" as="f" hint-placeholder-count="5">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+        <!-- ============ NAV ============ -->
+        <nav class="nav">
+            <a href="#top" class="nav__brand">
+                <img src="img/icon.png" alt="Aurena" class="brand-icon">
+                <span class="brand-name">Aurena</span>
+            </a>
+            <div class="nav__links">
+                <a href="#sound" class="nav__link">Sound</a>
+                <a href="#library" class="nav__link">Library</a>
+                <a href="#retro" class="nav__link">Retro</a>
+                <a href="#remote" class="nav__link">Remote</a>
+                <a href="#specs" class="nav__link">Specs</a>
+                <a href="#download" data-cta="download" class="btn btn--primary btn--sm">Coming soon</a>
             </div>
-          </sc-for>
-        </div>
-      </div>
-      <div class="col-media" data-reveal>
-        <div class="glow"></div>
-        <img onClick="{{ zoomNow }}" src="img/now-playing.webp" width="1500" height="963" decoding="async" loading="lazy" alt="Now playing with VU and spectrum meters" class="shot shot--zoom">
-      </div>
-    </div>
+        </nav>
 
-    <!-- EQ showpiece -->
-    <div class="feature-row feature-row--reverse feature-row--spaced">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// 10-band EQ</div>
-        <h2 class="heading">An equaliser that can drive itself.</h2>
-        <p class="copy">Drag the bands live, pick a preset — or switch on <strong>Auto&nbsp;mode</strong> and let Aurena read the <em>genres</em> of what's playing and resolve the curve for you on every track change.</p>
-        <p class="copy copy--muted">A big alias table maps "shoegaze", "madchester", "techno" and hundreds more to tuned curves. When a track spans genres, you choose how the curves blend.</p>
-      </div>
-      <div class="col-media" data-reveal>
-        <div class="glow"></div>
-        <img src="img/eq.webp" width="1164" height="674" decoding="async" loading="lazy" alt="Aurena 10-band equaliser with Auto mode" class="shot">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LIBRARY ============ -->
-<section id="library" class="section section--tint">
-  <div class="container">
-    <div class="feature-row">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// A library built for real collections</div>
-        <h2 class="heading heading--gap">Multi-root. Multi-disc. Big. Fast.</h2>
-        <div class="feature-list">
-          <sc-for list="{{ libraryFeatures }}" as="f" hint-placeholder-count="7">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+        <!-- ============ HERO ============ -->
+        <header id="top" class="hero">
+            <!-- ambient glow -->
+            <div class="hero__glow"></div>
+            <!-- ambient VU field -->
+            <div class="vu-field" aria-hidden="true">
+                <sc-for list="{{ vuBars }}" as="b" hint-placeholder-count="48">
+                    <span class="vu-bar"
+                          style="animation:auVu {{ b.dur }} ease-in-out infinite;animation-delay:{{ b.delay }};"></span>
+                </sc-for>
             </div>
-          </sc-for>
-        </div>
-      </div>
-      <div class="col-media" data-reveal>
-        <div class="glow"></div>
-        <img onClick="{{ zoomLibrary }}" src="img/library.webp" width="1600" height="1017" decoding="async" loading="lazy" alt="Album grid library view" class="shot shot--zoom">
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ METADATA ============ -->
-<section class="section">
-  <div class="container">
-    <div class="feature-row feature-row--reverse">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// Metadata that actually sticks</div>
-        <h2 class="heading heading--gap">Where collectors live — and where Aurena shines.</h2>
-        <div class="feature-list">
-          <sc-for list="{{ metaFeatures }}" as="f" hint-placeholder-count="5">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+            <div class="hero__inner">
+                <div class="hero__brand">
+                    <img src="img/icon.png" alt="Aurena app icon" class="hero__icon">
+                    <span class="hero__wordmark">Aurena</span>
+                </div>
+                <div class="pill">
+                    <span class="pill__dot"></span>Free · Local-first · Cross-platform
+                </div>
+                <h1 class="hero__title">Own your music.<br>Play it <em>anywhere.</em></h1>
+                <p class="hero__sub">A modular music player and library manager for people who actually <em>care</em>
+                    about their collection — from lossless FLAC to Commodore&nbsp;64 SID, on your desktop, your phone,
+                    and your hi-fi.</p>
+                <div class="btn-row">
+                    <a href="#download" data-cta="download" class="btn btn--primary btn--md"
+                       style-hover="box-shadow:0 14px 48px rgba(244,242,238,.2),0 0 34px rgba(142,114,242,.28);transform:translateY(-1px);">Coming
+                        soon</a>
+                    <a href="#sound" class="btn btn--ghost btn--md"
+                       style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">See
+                        the features ↓</a>
+                </div>
             </div>
-          </sc-for>
-        </div>
-      </div>
-      <div class="col-media" data-reveal>
-        <img onClick="{{ zoomMeta }}" src="img/metadata.webp" width="1500" height="1173" decoding="async" loading="lazy" alt="Metadata editor with MusicBrainz confidence indicator" class="shot shot--zoom">
-      </div>
-    </div>
-    <div class="pullquote" data-reveal>
-      <p class="pullquote__text">The killer detail: every other tagger writes into your files and crosses its fingers. Aurena keeps your corrections in a sidecar so they outlive any future re-tag or re-rip.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ============ RETRO ============ -->
-<section id="retro" class="section section--clip">
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="container is-front">
-    <div class="feature-row">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// Retro &amp; chiptune</div>
-        <h2 class="heading">Emulated, not recorded. Treated like real music.</h2>
-        <p class="mono-caption">Real emulation · real formats · first-class citizens</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="feature-dot"></span>
-            <p class="feature-body">Aurena integrates seamlessly with the wonderful <a href="https://nostalgicplayer.dk/" target="_blank" rel="noopener noreferrer" class="link-accent">Nostalgic Player</a> to bring you access to over 100 classic C64, Amiga and PC music tracks.</p>
-          </div>
-          <sc-for list="{{ retroFeatures }}" as="f" hint-placeholder-count="3">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+            <!-- hero shot -->
+            <div class="hero-shot" data-reveal>
+                <div class="hero-shot__glow"></div>
+                <img onClick="{{ zoomHero }}" src="img/hero.webp" width="2200" height="1539" fetchpriority="high"
+                     decoding="async" alt="Aurena — the album wall with now playing">
             </div>
-          </sc-for>
-        </div>
-        <div class="chip-row chip-row--spaced">
-          <sc-for list="{{ retroFormats }}" as="fmt" hint-placeholder-count="8">
-            <span class="chip">{{ fmt.name }}</span>
-          </sc-for>
-        </div>
-      </div>
-      <div class="col-media" data-reveal>
-        <img onClick="{{ zoomRetro }}" src="img/retro.webp" width="1500" height="1009" decoding="async" loading="lazy" alt="Retro formats browser, SID now playing" class="shot shot--zoom">
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ PLAYLISTS ============ -->
-<section class="section">
-  <div class="container">
-    <div class="feature-row feature-row--reverse">
-      <div class="col-copy" data-reveal>
-        <div class="eyebrow">// Playlists</div>
-        <h2 class="heading heading--gap">Hand-built, or self-maintaining.</h2>
-        <div class="feature-list">
-          <sc-for list="{{ playlistFeatures }}" as="f" hint-placeholder-count="4">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+            <div class="hero-intro panel">
+                <p class="lead"><strong>Not another streaming app.</strong> Aurena lives on <em>your</em> hardware,
+                    manages <em>your</em> files, and answers to nobody's recommendation engine. Your library never
+                    leaves your network.</p>
             </div>
-          </sc-for>
-        </div>
-        <div class="panel panel--inset">
-          <h3 class="panel__title">…or just describe a vibe</h3>
-          <p class="note"><strong>AI playlists</strong> generate from the actual <em>sound</em> of your tracks — ask in plain English. Runs against a local Ollama server (fully private) or Google Gemini — your choice.</p>
-        </div>
-      </div>
-      <div class="col-media" data-reveal>
-        <img onClick="{{ zoomPlaylists }}" src="img/smart-playlists.webp" width="1600" height="1063" decoding="async" loading="lazy" alt="Smart playlist editor with live match count" class="shot shot--zoom">
-      </div>
-    </div>
-  </div>
-</section>
+        </header>
 
-<!-- ============ REMOTE / EVERY SCREEN ============ -->
-<section id="remote" class="section section--tint">
-  <div class="container">
-    <div class="measure-head" data-reveal>
-      <div class="eyebrow">// Your whole collection, on every screen</div>
-      <h2 class="heading-lg">Aurena runs on your desktop and serves the rest of your network.</h2>
-      <p class="copy">A built-in web UI, real-time desktop ⇄ web sync, and a Subsonic-compatible server — point Symfonium, DSub or Ultrasonic at it and stream the library you already own. Everything stays on your hardware.</p>
-    </div>
-    <div class="cluster-center">
-      <div class="phones" data-reveal>
-        <!-- phone 1 -->
-        <div class="phone">
-          <div class="glow glow--wide"></div>
-          <div class="phone__frame">
-            <img onClick="{{ zoomPhonePlayer }}" src="img/phone-player.webp" width="760" height="1692" decoding="async" loading="lazy" alt="Remote web player on a phone" class="phone__img">
-          </div>
-        </div>
-        <!-- phone 2 -->
-        <div class="phone phone--low">
-          <div class="glow glow--wide"></div>
-          <div class="phone__frame">
-            <img onClick="{{ zoomPhoneJukebox }}" src="img/phone-jukebox.webp" width="760" height="1692" decoding="async" loading="lazy" alt="Jukebox guest request view on a phone" class="phone__img">
-          </div>
-        </div>
-      </div>
-      <div class="jukebox-copy" data-reveal>
-        <div class="pill pill--purple">The Jukebox</div>
-        <h3 class="jukebox-title">Turn any room into a request queue.</h3>
-        <p class="copy copy--sm">Throwing a party? Guests queue tracks from their own phones — they sign in with a name, and <strong>per-user cooldowns</strong> stop anyone hogging the decks. There's a dedicated "now playing" view for the room.</p>
-        <p class="mono-note">http://your-machine.local:8989</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MORE: PODCASTS / RIP / SPLIT ============ -->
-<section class="section section--compact">
-  <div class="container">
-    <div class="card-grid card-grid--loose">
-      <div class="is-front" data-reveal>
-        <div class="eyebrow">// Podcasts, built in</div>
-        <h3 class="h3-fluid">A full podcast client, right next to your music.</h3>
-        <img onClick="{{ zoomPodcasts }}" src="img/podcasts.webp" width="1500" height="940" decoding="async" loading="lazy" alt="Podcast subscriptions and episode list" class="shot shot--zoom shot--soft">
-        <div class="feature-list">
-          <sc-for list="{{ podcastFeatures }}" as="f" hint-placeholder-count="4">
-            <div class="feature-item">
-              <span class="feature-dot"></span>
-              <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+        <!-- ============ WHY DIFFERENT ============ -->
+        <section class="section">
+            <div class="container">
+                <div class="block-head" data-reveal>
+                    <div class="eyebrow">// One app that does it all</div>
+                    <h2 class="heading-xl">You shouldn't need five apps to manage one collection.</h2>
+                    <p class="lead lead--dim">Plenty of players nail some of these but Aurena aims to pull everything
+                        together inside of one easy to use and unified app. It streams, it tags, it plays chiptunes and
+                        makes your library available on all of your devices.</p>
+                </div>
+                <div class="card-grid">
+                    <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="7">
+                        <div class="card card--feature" data-reveal>
+                            <div class="card__num">{{ p.num }}</div>
+                            <h3 class="card__title">{{ p.title }}</h3>
+                            <p class="card__body">{{ p.body }}</p>
+                        </div>
+                    </sc-for>
+                </div>
+                <div class="callout" data-reveal>
+                    <p class="callout__text">Any one of these you can find elsewhere. All of them, working together, on
+                        hardware you own? <span class="grad-text">That's Aurena.</span></p>
+                </div>
             </div>
-          </sc-for>
-        </div>
-      </div>
-      <div data-reveal>
-        <div class="eyebrow">// Get discs &amp; long recordings in</div>
-        <h3 class="h3-fluid h3-fluid--gap">Rip, encode and split — cleanly.</h3>
-        <div class="card-stack">
-          <sc-for list="{{ ripFeatures }}" as="f" hint-placeholder-count="3">
-            <div class="card card--sm">
-              <h4 class="rip-title">{{ f.title }}</h4>
-              <p class="rip-body">{{ f.body }}</p>
+        </section>
+
+        <!-- ============ RASPBERRY PI ============ -->
+        <section class="section">
+            <div class="container">
+                <div class="feature-row feature-row--reverse">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// Raspberry Pi ready</div>
+                        <h2 class="heading">Turn a £90 board into a dedicated music system.</h2>
+                        <p class="copy">Built for the Raspberry Pi 5 — turn an affordable single-board computer into a
+                            dedicated music system. It boots straight into Aurena, <strong>no desktop environment
+                                needed</strong>.</p>
+                        <p class="copy copy--muted">Connect to your amp via HDMI, analogue, or Bluetooth, then drive it
+                            from your TV's kiosk interface or remotely from a phone, tablet, or laptop. Living-room
+                            centrepiece or fully headless — your call.</p>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <div class="glow"></div>
+                        <img onClick="{{ zoomPi }}" src="img/pi-kiosk.webp" width="1600" height="1000" decoding="async"
+                             loading="lazy" alt="Pi 5 hi-fi kiosk on a TV — now playing on the big screen"
+                             class="shot shot--zoom">
+                    </div>
+                </div>
             </div>
-          </sc-for>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
-<!-- ============ SPECS / PLATFORMS ============ -->
-<section id="specs" class="section">
-  <div class="container container--narrow">
-    <div class="center-head" data-reveal>
-      <div class="eyebrow">// Runs where you do</div>
-      <h2 class="heading-lg heading-lg--flush">Three platforms. One codebase.</h2>
-    </div>
-    <div class="card-grid card-grid--tight" data-reveal>
-      <sc-for list="{{ platforms }}" as="pf" hint-placeholder-count="3">
-        <div class="card">
-          <div class="platform__head">
-            <span class="platform__dot"></span>
-            <h3 class="platform__name">{{ pf.name }}</h3>
-          </div>
-          <p class="platform__body">{{ pf.body }}</p>
-        </div>
-      </sc-for>
-    </div>
-    <div class="stack-block" data-reveal>
-      <p class="kicker">Under the hood</p>
-      <div class="chip-row">
-        <sc-for list="{{ stack }}" as="s" hint-placeholder-count="11">
-          <span class="chip chip--lg">{{ s.name }}</span>
-        </sc-for>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- ============ SOUND ============ -->
+        <section id="sound" class="section">
+            <div class="container">
+                <div class="feature-row">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// Sound you can trust</div>
+                        <h2 class="heading">It has to sound right first. Everything else is secondary.</h2>
+                        <p class="copy copy--gap">A playback chain built on GStreamer and tuned for serious
+                            listening.</p>
+                        <div class="feature-list">
+                            <sc-for list="{{ soundFeatures }}" as="f" hint-placeholder-count="5">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <div class="glow"></div>
+                        <img onClick="{{ zoomNow }}" src="img/now-playing.webp" width="1500" height="963"
+                             decoding="async" loading="lazy" alt="Now playing with VU and spectrum meters"
+                             class="shot shot--zoom">
+                    </div>
+                </div>
 
-<!-- ============ FINAL CTA ============ -->
-<section id="download" class="section--cta">
-  <div class="cta__glow"></div>
-  <div class="cta__inner">
-    <h2 class="heading-cta">Stop renting your music library. Start owning it.</h2>
-    <p class="cta__sub">Aurena is free. It's local-first. And it's built for people who give a damn about their collection.</p>
-    <div class="btn-row">
-      <a href="#" data-cta="download-final" class="btn btn--primary btn--lg" style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Coming soon for Linux / Windows / macOS</a>
-      <a href="#" data-cta="follow" class="btn btn--ghost btn--lg" style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">★ Follow the project</a>
-    </div>
-    <p class="cta__note">Found a bug or have an idea? Feedback directly shapes where Aurena goes next.</p>
-  </div>
-</section>
+                <!-- EQ showpiece -->
+                <div class="feature-row feature-row--reverse feature-row--spaced">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// 10-band EQ</div>
+                        <h2 class="heading">An equaliser that can drive itself.</h2>
+                        <p class="copy">Drag the bands live, pick a preset — or switch on
+                            <strong>Auto&nbsp;mode</strong> and let Aurena read the <em>genres</em> of what's playing
+                            and resolve the curve for you on every track change.</p>
+                        <p class="copy copy--muted">A big alias table maps "shoegaze", "madchester", "techno" and
+                            hundreds more to tuned curves. When a track spans genres, you choose how the curves
+                            blend.</p>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <div class="glow"></div>
+                        <img src="img/eq.webp" width="1164" height="674" decoding="async" loading="lazy"
+                             alt="Aurena 10-band equaliser with Auto mode" class="shot">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__brand">
-      <img src="img/icon.png" alt="Aurena" class="brand-icon">
-      <span class="brand-name">Aurena</span>
-      <span class="footer__tag">Own your music. Play it anywhere.</span>
-    </div>
-    <div class="footer__links">
-      <a href="#">Download</a>
-      <a href="#">GitHub</a>
-      <a href="#sound">Features</a>
-      <a href="#specs">Specs</a>
-    </div>
-  </div>
-</footer>
+        <!-- ============ LIBRARY ============ -->
+        <section id="library" class="section section--tint">
+            <div class="container">
+                <div class="feature-row">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// A library built for real collections</div>
+                        <h2 class="heading heading--gap">Multi-root. Multi-disc. Big. Fast.</h2>
+                        <div class="feature-list">
+                            <sc-for list="{{ libraryFeatures }}" as="f" hint-placeholder-count="7">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <div class="glow"></div>
+                        <img onClick="{{ zoomLibrary }}" src="img/library.webp" width="1600" height="1017"
+                             decoding="async" loading="lazy" alt="Album grid library view" class="shot shot--zoom">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- ============ LIGHTBOX ============ -->
-<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
-  <div onClick="{{ closeZoom }}" class="lightbox">
-    <button onClick="{{ closeZoom }}" aria-label="Close" class="lightbox__close">✕</button>
-    <figure class="lightbox__figure">
-      {{ lightboxImg }}
-      <figcaption class="lightbox__caption">{{ lightboxAlt }} · click anywhere to close</figcaption>
-    </figure>
-  </div>
-</sc-if>
+        <!-- ============ METADATA ============ -->
+        <section class="section">
+            <div class="container">
+                <div class="feature-row feature-row--reverse">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// Metadata that actually sticks</div>
+                        <h2 class="heading heading--gap">Where collectors live — and where Aurena shines.</h2>
+                        <div class="feature-list">
+                            <sc-for list="{{ metaFeatures }}" as="f" hint-placeholder-count="5">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <img onClick="{{ zoomMeta }}" src="img/metadata.webp" width="1500" height="1173"
+                             decoding="async" loading="lazy" alt="Metadata editor with MusicBrainz confidence indicator"
+                             class="shot shot--zoom">
+                    </div>
+                </div>
+                <div class="pullquote" data-reveal>
+                    <p class="pullquote__text">The killer detail: every other tagger writes into your files and crosses
+                        its fingers. Aurena keeps your corrections in a sidecar so they outlive any future re-tag or
+                        re-rip.</p>
+                </div>
+            </div>
+        </section>
 
-</div>
+        <!-- ============ RETRO ============ -->
+        <section id="retro" class="section section--clip">
+            <div class="scanlines" aria-hidden="true"></div>
+            <div class="container is-front">
+                <div class="feature-row">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// Retro &amp; chiptune</div>
+                        <h2 class="heading">Emulated, not recorded. Treated like real music.</h2>
+                        <p class="mono-caption">Real emulation · real formats · first-class citizens</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <p class="feature-body">Aurena integrates seamlessly with the wonderful <a
+                                        href="https://nostalgicplayer.dk/" target="_blank" rel="noopener noreferrer"
+                                        class="link-accent">Nostalgic Player</a> to bring you access to over 100 classic
+                                    C64, Amiga and PC music tracks.</p>
+                            </div>
+                            <sc-for list="{{ retroFeatures }}" as="f" hint-placeholder-count="3">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                        <div class="chip-row chip-row--spaced">
+                            <sc-for list="{{ retroFormats }}" as="fmt" hint-placeholder-count="8">
+                                <span class="chip">{{ fmt.name }}</span>
+                            </sc-for>
+                        </div>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <img onClick="{{ zoomRetro }}" src="img/retro.webp" width="1500" height="1009" decoding="async"
+                             loading="lazy" alt="Retro formats browser, SID now playing" class="shot shot--zoom">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PLAYLISTS ============ -->
+        <section class="section">
+            <div class="container">
+                <div class="feature-row feature-row--reverse">
+                    <div class="col-copy" data-reveal>
+                        <div class="eyebrow">// Playlists</div>
+                        <h2 class="heading heading--gap">Hand-built, or self-maintaining.</h2>
+                        <div class="feature-list">
+                            <sc-for list="{{ playlistFeatures }}" as="f" hint-placeholder-count="4">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                        <div class="panel panel--inset">
+                            <h3 class="panel__title">…or just describe a vibe</h3>
+                            <p class="note"><strong>AI playlists</strong> generate from the actual <em>sound</em> of
+                                your tracks — ask in plain English. Runs against a local Ollama server (fully private)
+                                or Google Gemini — your choice.</p>
+                        </div>
+                    </div>
+                    <div class="col-media" data-reveal>
+                        <img onClick="{{ zoomPlaylists }}" src="img/smart-playlists.webp" width="1600" height="1063"
+                             decoding="async" loading="lazy" alt="Smart playlist editor with live match count"
+                             class="shot shot--zoom">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ REMOTE / EVERY SCREEN ============ -->
+        <section id="remote" class="section section--tint">
+            <div class="container">
+                <div class="measure-head" data-reveal>
+                    <div class="eyebrow">// Your whole collection, on every screen</div>
+                    <h2 class="heading-lg">Aurena runs on your desktop and serves the rest of your network.</h2>
+                    <p class="copy">A built-in web UI, real-time desktop ⇄ web sync, and a Subsonic-compatible server —
+                        point Symfonium, DSub or Ultrasonic at it and stream the library you already own. Everything
+                        stays on your hardware.</p>
+                </div>
+                <div class="cluster-center">
+                    <div class="phones" data-reveal>
+                        <!-- phone 1 -->
+                        <div class="phone">
+                            <div class="glow glow--wide"></div>
+                            <div class="phone__frame">
+                                <img onClick="{{ zoomPhonePlayer }}" src="img/phone-player.webp" width="760"
+                                     height="1692" decoding="async" loading="lazy" alt="Remote web player on a phone"
+                                     class="phone__img">
+                            </div>
+                        </div>
+                        <!-- phone 2 -->
+                        <div class="phone phone--low">
+                            <div class="glow glow--wide"></div>
+                            <div class="phone__frame">
+                                <img onClick="{{ zoomPhoneJukebox }}" src="img/phone-jukebox.webp" width="760"
+                                     height="1692" decoding="async" loading="lazy"
+                                     alt="Jukebox guest request view on a phone" class="phone__img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jukebox-copy" data-reveal>
+                        <div class="pill pill--purple">The Jukebox</div>
+                        <h3 class="jukebox-title">Turn any room into a request queue.</h3>
+                        <p class="copy copy--sm">Throwing a party? Guests queue tracks from their own phones — they sign
+                            in with a name, and <strong>per-user cooldowns</strong> stop anyone hogging the decks.
+                            There's a dedicated "now playing" view for the room.</p>
+                        <p class="mono-note">http://your-machine.local:8989</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ MORE: PODCASTS / RIP / SPLIT ============ -->
+        <section class="section section--compact">
+            <div class="container">
+                <div class="card-grid card-grid--loose">
+                    <div class="is-front" data-reveal>
+                        <div class="eyebrow">// Podcasts, built in</div>
+                        <h3 class="h3-fluid">A full podcast client, right next to your music.</h3>
+                        <img onClick="{{ zoomPodcasts }}" src="img/podcasts.webp" width="1500" height="940"
+                             decoding="async" loading="lazy" alt="Podcast subscriptions and episode list"
+                             class="shot shot--zoom shot--soft">
+                        <div class="feature-list">
+                            <sc-for list="{{ podcastFeatures }}" as="f" hint-placeholder-count="4">
+                                <div class="feature-item">
+                                    <span class="feature-dot"></span>
+                                    <p class="feature-body"><strong>{{ f.title }}</strong> — {{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                    </div>
+                    <div data-reveal>
+                        <div class="eyebrow">// Get discs &amp; long recordings in</div>
+                        <h3 class="h3-fluid h3-fluid--gap">Rip, encode and split — cleanly.</h3>
+                        <div class="card-stack">
+                            <sc-for list="{{ ripFeatures }}" as="f" hint-placeholder-count="3">
+                                <div class="card card--sm">
+                                    <h4 class="rip-title">{{ f.title }}</h4>
+                                    <p class="rip-body">{{ f.body }}</p>
+                                </div>
+                            </sc-for>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SPECS / PLATFORMS ============ -->
+        <section id="specs" class="section">
+            <div class="container container--narrow">
+                <div class="center-head" data-reveal>
+                    <div class="eyebrow">// Runs where you do</div>
+                    <h2 class="heading-lg heading-lg--flush">Three platforms. One codebase.</h2>
+                </div>
+                <div class="card-grid card-grid--tight" data-reveal>
+                    <sc-for list="{{ platforms }}" as="pf" hint-placeholder-count="3">
+                        <div class="card">
+                            <div class="platform__head">
+                                <span class="platform__dot"></span>
+                                <h3 class="platform__name">{{ pf.name }}</h3>
+                            </div>
+                            <p class="platform__body">{{ pf.body }}</p>
+                        </div>
+                    </sc-for>
+                </div>
+                <div class="stack-block" data-reveal>
+                    <p class="kicker">Under the hood</p>
+                    <div class="chip-row">
+                        <sc-for list="{{ stack }}" as="s" hint-placeholder-count="11">
+                            <span class="chip chip--lg">{{ s.name }}</span>
+                        </sc-for>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FINAL CTA ============ -->
+        <section id="download" class="section--cta">
+            <div class="cta__glow"></div>
+            <div class="cta__inner">
+                <h2 class="heading-cta">Stop renting your music library. Start owning it.</h2>
+                <p class="cta__sub">Aurena is free. It's local-first. And it's built for people who give a damn about
+                    their collection.</p>
+                <div class="btn-row">
+                    <a href="#" data-cta="download-final" class="btn btn--primary btn--lg"
+                       style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Coming
+                        soon for Linux / Windows / macOS</a>
+                    <a href="#" data-cta="follow" class="btn btn--ghost btn--lg"
+                       style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">★
+                        Follow the project</a>
+                </div>
+                <p class="cta__note">Found a bug or have an idea? Feedback directly shapes where Aurena goes next.</p>
+            </div>
+        </section>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="footer">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <img src="img/icon.png" alt="Aurena" class="brand-icon">
+                    <span class="brand-name">Aurena</span>
+                    <span class="footer__tag">Own your music. Play it anywhere.</span>
+                </div>
+                <div class="footer__links">
+                    <a href="#">Download</a>
+                    <a href="#">GitHub</a>
+                    <a href="#sound">Features</a>
+                    <a href="#specs">Specs</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ============ LIGHTBOX ============ -->
+        <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closeZoom }}" class="lightbox">
+                <button onClick="{{ closeZoom }}" aria-label="Close" class="lightbox__close">✕</button>
+                <figure class="lightbox__figure">
+                    {{ lightboxImg }}
+                    <figcaption class="lightbox__caption">{{ lightboxAlt }} · click anywhere to close</figcaption>
+                </figure>
+            </div>
+        </sc-if>
+
+    </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { gains: [6,5,3,0,-2,-1,1,2,4,6], lightbox: { open: false, src: '', alt: '' } };
-
-  freqs = ['31','62','125','250','500','1k','2k','4k','8k','16k'];
-
-  componentDidMount() {
-    // Scroll reveal — content is visible by default; only hide+animate if JS runs.
-    const els = Array.from(document.querySelectorAll('[data-reveal]'));
-    if (!('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
-          io.unobserve(e.target);
+<script type="text/x-dc" data-dc-script></script>
+<script>
+    // Component logic lives in app.dc.js. The runtime reads it from this data
+    // island's text content, so load it synchronously before boot (DOMContentLoaded).
+    (function () {
+        try {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'app.dc.js', false);
+            xhr.send();
+            if (xhr.status >= 200 && xhr.status < 300) {
+                document.querySelector('script[data-dc-script]').textContent = xhr.responseText;
+            }
+        } catch (e) {
+            console.error('Failed to load app.dc.js', e);
         }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach(el => {
-      const r = el.getBoundingClientRect();
-      const inView = r.top < window.innerHeight * 0.92;
-      if (inView) return; // already on screen — leave visible, no flash
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(26px)';
-      el.style.transition = 'opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)';
-      io.observe(el);
-    });
-
-    // EQ drag
-    this._dragI = null;
-    this._dragRect = null;
-    const move = (e) => {
-      if (this._dragI == null) return;
-      e.preventDefault();
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-      this._applyFromY(y);
-    };
-    const up = () => { this._dragI = null; this._dragRect = null; };
-    window.addEventListener('pointermove', move, { passive: false });
-    window.addEventListener('pointerup', up);
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.state.lightbox && this.state.lightbox.open) {
-        this.setState({ lightbox: { open: false, src: '', alt: '' } });
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  _applyFromY(y) {
-    const r = this._dragRect;
-    if (!r) return;
-    let p = (y - r.top) / r.height;
-    p = Math.max(0, Math.min(1, p));
-    const gain = Math.round((1 - p) * 24 - 12);
-    const gains = this.state.gains.slice();
-    gains[this._dragI] = gain;
-    this.setState({ gains });
-  }
-
-  renderVals() {
-    const gains = this.state.gains;
-    const bands = gains.map((g, i) => {
-      const handlePct = (1 - (g + 12) / 24) * 100;
-      const fillT = Math.min(handlePct, 50);
-      const fillH = Math.abs(50 - handlePct);
-      return {
-        i,
-        freq: this.freqs[i],
-        gain: g,
-        label: g > 0 ? '+' + g : '' + g,
-        handleT: handlePct.toFixed(1) + '%',
-        fillT: fillT.toFixed(1) + '%',
-        fillH: fillH.toFixed(1) + '%',
-        onDown: (e) => {
-          const track = e.currentTarget.querySelector('div');
-          // measure the vertical track region (the relative slider area)
-          const region = e.currentTarget.children[1];
-          this._dragRect = region.getBoundingClientRect();
-          this._dragI = i;
-          const y = e.touches ? e.touches[0].clientY : e.clientY;
-          this._applyFromY(y);
-        }
-      };
-    });
-
-    const setGains = (arr) => () => this.setState({ gains: arr.slice() });
-
-    const lb = this.state.lightbox || { open: false, src: '', alt: '' };
-    const openZoom = (src, alt) => () => { this.setState({ lightbox: { open: true, src, alt } }); document.body.style.overflow = 'hidden'; };
-    const closeZoom = () => { this.setState({ lightbox: { open: false, src: '', alt: '' } }); document.body.style.overflow = ''; };
-
-    return {
-      bands,
-      lightboxOpen: lb.open,
-      lightboxAlt: lb.alt,
-      lightboxImg: lb.open ? React.createElement('img', { src: lb.src, alt: lb.alt, style: { maxWidth: '96vw', maxHeight: '84vh', width: 'auto', height: 'auto', borderRadius: '12px', boxShadow: '0 40px 120px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06)' } }) : null,
-      zoomHero: openZoom('img/hero.webp', 'Aurena — the album wall with now playing'),
-      zoomNow: openZoom('img/now-playing.webp', 'Now playing with VU & spectrum meters'),
-      zoomMeta: openZoom('img/metadata.webp', 'Metadata editor with MusicBrainz confidence indicator'),
-      zoomRetro: openZoom('img/retro.webp', 'Retro formats browser · SID now playing'),
-      zoomPodcasts: openZoom('img/podcasts.webp', 'Podcast subscriptions & episode list'),
-      zoomPhonePlayer: openZoom('img/phone-player.webp', 'Remote web player on a phone'),
-      zoomPhoneJukebox: openZoom('img/phone-jukebox.webp', 'Jukebox guest request view'),
-      zoomPlaylists: openZoom('img/smart-playlists.webp', 'Smart playlist editor with live match count'),
-      zoomLibrary: openZoom('img/library.webp', 'Album grid library view'),
-      zoomPi: openZoom('img/pi-kiosk.webp', 'Pi 5 hi-fi kiosk on a TV — now playing on the big screen'),
-      closeZoom,
-      autoLabel: 'Auto · genre-aware',
-      setFlat: setGains([0,0,0,0,0,0,0,0,0,0]),
-      setVocal: setGains([-2,-1,0,2,4,4,3,2,1,0]),
-      setLoud: setGains([6,5,2,0,-1,-1,0,2,5,6]),
-
-      vuBars: Array.from({ length: 52 }, (_, i) => ({
-        dur: (0.7 + (i % 7) * 0.18).toFixed(2) + 's',
-        delay: ((i % 11) * 0.13).toFixed(2) + 's'
-      })),
-
-      pillars: [
-        { num: '01', title: 'Retro formats as first-class citizens', body: React.createElement(React.Fragment, null,
-          'This is the one almost nobody does: cycle-accurate C64 SID ',
-          React.createElement('em', { style: { fontStyle: 'italic' } }, 'and'),
-          ' 100+ tracker/module formats — all thanks to integration with the wonderful ',
-          React.createElement('a', { href: 'https://nostalgicplayer.dk/', target: '_blank', rel: 'noopener noreferrer', style: { color: '#5FE3DA', textDecoration: 'none', borderBottom: '1px solid rgba(95,227,218,.45)', textShadow: '0 0 10px rgba(95,227,218,.4)' } }, 'Nostalgic Player'),
-          ' — scanned, searchable and playlist-able right alongside your FLACs, not bolted on as a playback plugin.'
-        ) },
-        { num: '02', title: 'A hi-fi appliance on a Raspberry Pi', body: 'Boots a Pi 5 straight into Aurena — no desktop needed — for a dedicated music system you drive from the TV or your phone. The kind of thing you\u2019d normally buy a £500 streamer for.' },
-        { num: '03', title: 'Playlists from a plain-English vibe', body: React.createElement(React.Fragment, null,
-          'Describe what you want and Aurena builds it from the ',
-          React.createElement('em', { style: { fontStyle: 'italic' } }, 'actual sound'),
-          ' of your tracks, not just tags — running fully private on a local Ollama, or on Gemini if you prefer.'
-        ) },
-        { num: '04', title: 'An EQ that drives itself', body: React.createElement(React.Fragment, null,
-          'A 10-band EQ that reads the ',
-          React.createElement('em', { style: { fontStyle: 'italic' } }, 'genre'),
-          ' of each track and resolves the curve for you on every change — hundreds of genres mapped to tuned presets. Set it and forget it.'
-        ) },
-        { num: '05', title: 'Metadata that survives', body: React.createElement(React.Fragment, null,
-          'A sidecar layer keeps your hard-won corrections ',
-          React.createElement('em', { style: { fontStyle: 'italic' } }, 'next to your files'),
-          ', so they ',
-          React.createElement('strong', { style: { color: '#F4F2EE', fontWeight: 700 } }, "don't get wiped"),
-          ' when tags are rewritten or a disc is re-ripped.'
-        ) },
-        { num: '06', title: 'The whole app, on every screen', body: React.createElement(React.Fragment, null,
-          'A built-in web UI ',
-          React.createElement('em', { style: { fontStyle: 'italic' } }, 'plus'),
-          ' a real Subsonic-compatible server, with live desktop ⇄ web sync — stream your collection on any phone, with the clients you already love.'
-        ) },
-        { num: '07', title: 'A party jukebox built in', body: 'Guests queue tracks from their own phones, with per-person cooldowns so nobody hogs the decks.' },
-        { num: '08', title: 'Local-first, no strings', body: React.createElement(React.Fragment, null,
-          'Your music, your metadata, your machine. No accounts, no cloud lock-in, no subscription — and ',
-          React.createElement('strong', { style: { color: '#F4F2EE', fontWeight: 700 } }, 'free to use'),
-          '.'
-        ) },
-        { num: '09', title: 'Modular by design', body: 'A lean core that loads features as plugins — so it stays fast and focused instead of bloating.' }
-      ],
-
-      soundFeatures: [
-        { title: 'Gapless advancement', body: 'live albums, DJ mixes and concept records flow track-to-track with no silence punched into the seams.' },
-        { title: 'Configurable crossfade', body: 'overlap one track into the next over a window you choose — identical across normal albums and retro formats.' },
-        { title: 'VU & spectrum metering', body: 'real-time visuals for people who like to watch the music too.' },
-        { title: 'Smooth interpolated seek', body: 'scrubbing feels fluid, not steppy.' },
-        { title: 'Plays everything', body: 'lossless FLAC to everyday MP3/AAC/OGG, no fuss.' }
-      ],
-
-      libraryFeatures: [
-        { title: 'Media Pools', body: 'register multiple roots — local drives, NAS shares, external disks — and Aurena treats them as one unified library.' },
-        { title: 'Background incremental scanning', body: "drop in new files and they're picked up automatically, with live status. No forced full rescans." },
-        { title: 'Album grid & list', body: 'browse a wall of artwork or a dense, scannable list.' },
-        { title: 'Multi-disc done right', body: 'box sets are modelled properly, not flattened into one blob.' },
-        { title: 'Proper artwork management', body: 'folder-synced cover art and caching, not fragile embedded-only tags.' },
-        { title: 'Fast fuzzy full-text search', body: 'Lucene-backed, so typos and near-misses still find the track.' },
-        { title: 'Album tools', body: 'merge releases that scanned separately, fix bad durations, reveal files on disk.' }
-      ],
-
-      metaFeatures: [
-        { title: 'Acoustic fingerprinting', body: 'Chromaprint generates a fingerprint of every track on Linux, Windows and macOS.' },
-        { title: 'AcoustID → MusicBrainz', body: 'fingerprints resolve to full MusicBrainz metadata, with confidence scoring so you can see how sure a match is.' },
-        { title: 'In-app status indicators', body: 'icons and tooltips show fingerprint state, match confidence and last-scan date right in the track view.' },
-        { title: 'Sidecar metadata system', body: 'a per-track and per-album layer stored alongside your files — your edits survive tag rewrites, re-tagging and re-ripping.' },
-        { title: 'Dedicated editors', body: 'clean, field-by-field track and album metadata editors.' }
-      ],
-
-      retroFeatures: [
-        { title: 'Commodore 64 SID', body: 'cycle-accurate playback that is HVSC & STIL aware, so the High Voltage SID Collection plays with its song-length and info metadata intact.' },
-        { title: '100+ tracker / module formats', body: 'MOD, XM, IT, S3M and the wider libxmp family, plus AHX/THX/HVL and TFMX. If it came off an Amiga, Atari or a demoscene release, it probably plays.' },
-        { title: 'First-class citizens', body: 'retro tracks scan, browse, queue and go into playlists just like everything else. Mix a SID tune and a FLAC in the same playlist.' }
-      ],
-
-      retroFormats: ['SID','MOD','XM','IT','S3M','AHX/THX','HVL','TFMX'].map(n => ({ name: n })),
-
-      playlistFeatures: [
-        { title: 'Manual playlists', body: 'curate by hand with drag-and-drop reordering.' },
-        { title: 'Smart playlists', body: 'define a playlist as a query over name, album, artist, genre, duration, rating, play count and dates — match all or any, sort, and cap results.' },
-        { title: 'They keep themselves current', body: '"added in the last 14 days" and "not played in 6 months" roll forward on their own, every time you open them.' },
-        { title: 'Live preview while editing', body: 'see a running match count and sample tracks before you save.' }
-      ],
-
-      podcastFeatures: [
-        { title: 'Discovery across two directories', body: 'search both iTunes and PodcastIndex.' },
-        { title: 'RSS subscriptions', body: 'follow any standard podcast feed.' },
-        { title: 'Offline downloads', body: 'grab episodes for the commute.' },
-        { title: 'Artwork & metadata', body: 'handled with the same care as the music library.' }
-      ],
-
-      ripFeatures: [
-        { title: 'CD ripping', body: 'MusicBrainz disc-ID lookup to identify the disc and pull its tracklist, through a CD-Paranoia-style pipeline for accurate reads. (Linux-only.)' },
-        { title: 'Encoding profiles', body: 'reusable encode settings for FLAC, MP3, AAC and OGG.' },
-        { title: 'Track splitter', body: 'break one long file into tracks via automatic silence detection and a visual timeline editor for hand-placing split points.' }
-      ],
-
-      platforms: [
-        { name: 'Linux', body: 'Primary target — even runs as a Raspberry Pi 5 hi-fi kiosk appliance.' },
-        { name: 'Windows', body: 'Supported — audio runtime bundled, nothing extra to install.' },
-        { name: 'macOS', body: 'Fully supported, on par with Linux (CD ripping is the one exception).' }
-      ],
-
-      stack: ['.NET 10','Avalonia','ReactiveUI','EF Core + SQLite','GStreamer','Lucene.NET','TagLibSharp','Chromaprint','AcoustID','MusicBrainz','Angular'].map(n => ({ name: n }))
-    };
-  }
-}
+    })();
 </script>
 </body>
 </html>
