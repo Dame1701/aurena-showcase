@@ -699,7 +699,7 @@ strong { color: var(--ink); font-weight: 700; }
   color: var(--t-700);
   margin-left: 10px;
   white-space: nowrap;
-  vertical-align: baseline;
+  vertical-align: 2px;
   opacity: 1;
   transition: opacity .3s ease;
 }
