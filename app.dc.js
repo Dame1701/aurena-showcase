@@ -1,7 +1,5 @@
 class Component extends DCLogic {
-  state = { gains: [6,5,3,0,-2,-1,1,2,4,6], lightbox: { open: false, src: '', alt: '' } };
-
-  freqs = ['31','62','125','250','500','1k','2k','4k','8k','16k'];
+  state = { lightbox: { open: false, src: '', alt: '' } };
 
   componentDidMount() {
     // Scroll reveal — content is visible by default; only hide+animate if JS runs.
@@ -26,19 +24,6 @@ class Component extends DCLogic {
       io.observe(el);
     });
 
-    // EQ drag
-    this._dragI = null;
-    this._dragRect = null;
-    const move = (e) => {
-      if (this._dragI == null) return;
-      e.preventDefault();
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-      this._applyFromY(y);
-    };
-    const up = () => { this._dragI = null; this._dragRect = null; };
-    window.addEventListener('pointermove', move, { passive: false });
-    window.addEventListener('pointerup', up);
-
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.state.lightbox && this.state.lightbox.open) {
         this.setState({ lightbox: { open: false, src: '', alt: '' } });
@@ -47,51 +32,12 @@ class Component extends DCLogic {
     });
   }
 
-  _applyFromY(y) {
-    const r = this._dragRect;
-    if (!r) return;
-    let p = (y - r.top) / r.height;
-    p = Math.max(0, Math.min(1, p));
-    const gain = Math.round((1 - p) * 24 - 12);
-    const gains = this.state.gains.slice();
-    gains[this._dragI] = gain;
-    this.setState({ gains });
-  }
-
   renderVals() {
-    const gains = this.state.gains;
-    const bands = gains.map((g, i) => {
-      const handlePct = (1 - (g + 12) / 24) * 100;
-      const fillT = Math.min(handlePct, 50);
-      const fillH = Math.abs(50 - handlePct);
-      return {
-        i,
-        freq: this.freqs[i],
-        gain: g,
-        label: g > 0 ? '+' + g : '' + g,
-        handleT: handlePct.toFixed(1) + '%',
-        fillT: fillT.toFixed(1) + '%',
-        fillH: fillH.toFixed(1) + '%',
-        onDown: (e) => {
-          const track = e.currentTarget.querySelector('div');
-          // measure the vertical track region (the relative slider area)
-          const region = e.currentTarget.children[1];
-          this._dragRect = region.getBoundingClientRect();
-          this._dragI = i;
-          const y = e.touches ? e.touches[0].clientY : e.clientY;
-          this._applyFromY(y);
-        }
-      };
-    });
-
-    const setGains = (arr) => () => this.setState({ gains: arr.slice() });
-
     const lb = this.state.lightbox || { open: false, src: '', alt: '' };
     const openZoom = (src, alt) => () => { this.setState({ lightbox: { open: true, src, alt } }); document.body.style.overflow = 'hidden'; };
     const closeZoom = () => { this.setState({ lightbox: { open: false, src: '', alt: '' } }); document.body.style.overflow = ''; };
 
     return {
-      bands,
       lightboxOpen: lb.open,
       lightboxAlt: lb.alt,
       lightboxImg: lb.open ? React.createElement('img', { src: lb.src, alt: lb.alt, style: { maxWidth: '96vw', maxHeight: '84vh', width: 'auto', height: 'auto', borderRadius: '12px', boxShadow: '0 40px 120px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06)' } }) : null,
@@ -106,10 +52,6 @@ class Component extends DCLogic {
       zoomLibrary: openZoom('img/library.webp', 'Album grid library view'),
       zoomPi: openZoom('img/pi-kiosk.webp', 'Pi 5 hi-fi kiosk on a TV — now playing on the big screen'),
       closeZoom,
-      autoLabel: 'Auto · genre-aware',
-      setFlat: setGains([0,0,0,0,0,0,0,0,0,0]),
-      setVocal: setGains([-2,-1,0,2,4,4,3,2,1,0]),
-      setLoud: setGains([6,5,2,0,-1,-1,0,2,5,6]),
 
       vuBars: Array.from({ length: 52 }, (_, i) => ({
         dur: (0.7 + (i % 7) * 0.18).toFixed(2) + 's',
