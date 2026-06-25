@@ -170,7 +170,7 @@ class Component extends DCLogic {
         { title: 'Multi-disc done right', body: 'box sets are modelled properly, not flattened into one blob.' },
         { title: 'Proper artwork management', body: 'folder-synced cover art and caching, not fragile embedded-only tags.' },
         { title: 'Fast fuzzy full-text search', body: 'Lucene-backed, so typos and near-misses still find the track.' },
-        { title: 'Album tools', body: 'merge releases that scanned separately, fix bad durations, reveal files on disk.' }
+        { title: 'Album tools', body: 'merge multi disc albums, fix bad durations, sync track names and rewrite tags.' }
       ],
 
       metaFeatures: [
