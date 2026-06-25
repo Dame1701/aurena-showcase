@@ -124,6 +124,68 @@
             </div>
         </section>
 
+        <!-- ============ ARCHITECTURE (collapsible) ============ -->
+        <section class="section">
+            <div class="container">
+                <details class="arch" data-reveal>
+                    <summary class="arch__summary">
+                        <div>
+                            <div class="eyebrow">// Under the hood</div>
+                            <h2 class="heading">Aurena — Architecture in 60 seconds</h2>
+                        </div>
+                        <span class="arch__chevron" aria-hidden="true">▾</span>
+                    </summary>
+                    <div class="arch__body">
+                        <p class="copy">Aurena is a local-first desktop music system built around a <strong>micro-kernel host</strong> that loads feature plugins at runtime.</p>
+                        <p class="copy">The host is intentionally minimal. Almost all user-facing functionality — library management, playback engines, retro formats, playlists, podcasts, encoding, and remote control — is implemented as independent plugin modules.</p>
+
+                        <p class="arch__lead">All plugins share three things:</p>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">One process, one DI container</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">One SQLite database file, split into per-module DbContexts</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">An in-process message bus for decoupled communication</p></div>
+                        </div>
+
+                        <p class="copy">Plugins never reference each other directly. Instead, they communicate via <strong>typed domain and integration events</strong>, with compile-time enforced rules ensuring module boundaries stay clean.</p>
+
+                        <p class="arch__lead">The system is composed of:</p>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">A thin Avalonia desktop host (composition root + UI shell)</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">A plugin discovery system (reflection-based loading from /Plugins)</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">A shared core contract library (Aurena.Core)</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">An infrastructure layer (Aurena.Infrastructure) for EF Core, messaging, search, and reconciliation</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">A media engine abstraction layer built around a unified GStreamer pipeline</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">A real-time remote/web layer (Angular + ASP.NET Core SSE sync)</p></div>
+                        </div>
+
+                        <p class="arch__lead">Architecturally, Aurena prioritises:</p>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Modularity over monoliths</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Explicit boundaries via internal + contracts</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Event-driven coordination over direct coupling</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Single-process simplicity over distributed complexity</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Replaceable subsystems via dependency inversion</p></div>
+                        </div>
+
+                        <p class="copy">Despite its modularity, Aurena remains a <strong>single deployed application</strong>, not a distributed system.</p>
+
+                        <h3 class="arch__subhead">Why this architecture exists</h3>
+                        <p class="copy">Aurena is designed around a simple idea:</p>
+                        <div class="pullquote">
+                            <p class="pullquote__text">“A complex desktop application should still be understandable as a set of isolated, replaceable features.”</p>
+                        </div>
+                        <p class="arch__lead">That leads to three constraints:</p>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Plugins must fail independently without taking down the app</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Features must be added without modifying the host</p></div>
+                            <div class="feature-item"><span class="feature-dot"></span><p class="feature-body">Cross-module communication must be explicit and testable</p></div>
+                        </div>
+                        <p class="copy">The result is a <strong>modular monolith</strong> which behaves like a microservice architecture, but runs entirely inside a single desktop process.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
         <!-- ============ RASPBERRY PI ============ -->
         <section class="section">
             <div class="container">
@@ -244,10 +306,9 @@
                 </div>
                 <div class="pullquote" data-reveal>
                     <p class="pullquote__text">
-                        The killer detail: dedicated taggers overwrite your files; library managers
-                        bury your edits in their own database. Aurena keeps corrections in a portable
-                        sidecar next to the music — human-readable, backed up when you back up the folder,
-                        and untouched when tags are rewritten.</p>
+                        The killer detail: dedicated taggers overwrite files, library managers hide edits in a database. 
+                        Aurena stores corrections in a portable sidecar beside the music—human-readable, 
+                        backed up with the folder, and unaffected by tag changes.</p>
                 </div>
             </div>
         </section>
