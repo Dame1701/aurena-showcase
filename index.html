@@ -47,7 +47,7 @@
                 <a href="#retro" class="nav__link">Retro</a>
                 <a href="#remote" class="nav__link">Remote</a>
                 <a href="#specs" class="nav__link">Specs</a>
-                <a href="#download" data-cta="download" class="btn btn--primary btn--sm">Coming soon</a>
+                <a href="#download" data-cta="download" class="btn btn--primary btn--sm">Download</a>
             </div>
         </nav>
 
@@ -77,8 +77,7 @@
                     and your hi-fi.</p>
                 <div class="btn-row">
                     <a href="#download" data-cta="download" class="btn btn--primary btn--md"
-                       style-hover="box-shadow:0 14px 48px rgba(244,242,238,.2),0 0 34px rgba(142,114,242,.28);transform:translateY(-1px);">Coming
-                        soon</a>
+                       style-hover="box-shadow:0 14px 48px rgba(244,242,238,.2),0 0 34px rgba(142,114,242,.28);transform:translateY(-1px);">Download</a>
                     <a href="#pi" class="btn btn--ghost btn--md"
                        style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">See
                         the features ↓</a>
@@ -175,8 +174,8 @@
                         </div>
 
                         <p class="copy">Plugins never reference each other directly. Instead, they communicate via
-                            <strong>typed domain and integration events</strong>, with compile-time enforced rules
-                            ensuring module boundaries stay clean.</p>
+                            <strong>typed domain and integration events</strong>, with unit tests and compile-time 
+                            enforced rules ensuring module boundaries stay clean.</p>
 
                         <p class="arch__lead">The system is composed of:</p>
                         <div class="feature-list">
@@ -546,21 +545,82 @@
         </section>
 
         <!-- ============ FINAL CTA ============ -->
-        <section id="download" class="section--cta">
+        <section class="section--cta">
             <div class="cta__glow"></div>
             <div class="cta__inner">
                 <h2 class="heading-cta">Stop renting your music library. Start owning it.</h2>
                 <p class="cta__sub">Aurena is free. It's local-first. And it's built for people who give a damn about
                     their collection.</p>
                 <div class="btn-row">
-                    <a href="#" data-cta="download-final" class="btn btn--primary btn--lg"
-                       style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Coming
-                        soon for Linux / Windows / macOS</a>
-                    <a href="#" data-cta="follow" class="btn btn--ghost btn--lg"
+                    <a href="#download" data-cta="download-final" class="btn btn--primary btn--lg"
+                       style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Download
+                        for Linux / Windows / macOS</a>
+                    <a href="https://github.com/Dame1701/aurena-showcase" target="_blank" rel="noopener noreferrer"
+                       data-cta="follow" class="btn btn--ghost btn--lg"
                        style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">★
                         Follow the project</a>
                 </div>
                 <p class="cta__note">Found a bug or have an idea? Feedback directly shapes where Aurena goes next.</p>
+            </div>
+        </section>
+
+        <!-- ============ DOWNLOADS ============ -->
+        <section id="download" class="section section--tint">
+            <div class="container container--narrow">
+                <div class="center-head" data-reveal>
+                    <div class="eyebrow">// Download Aurena</div>
+                    <h2 class="heading-lg heading-lg--flush">Get Aurena — v1.0.0.0-beta</h2>
+                    <p class="copy dl-intro">Free, local-first, and yours to keep. Pick your platform and you're
+                        playing in minutes.</p>
+                </div>
+
+                <div class="card-grid card-grid--tight" data-reveal>
+                    <div class="card dl-card">
+                        <div class="platform__head">
+                            <span class="platform__dot"></span>
+                            <h3 class="platform__name">Linux</h3>
+                        </div>
+                        <p class="platform__body">AppImage · x86_64</p>
+                        <a href="https://github.com/Dame1701/aurena-showcase/releases/download/v1.0.0.0-beta/Aurena-1.0.0-x86_64.AppImage"
+                           data-cta="download-linux"
+                           class="btn btn--primary btn--md dl-btn">Download</a>
+                    </div>
+                    <div class="card dl-card">
+                        <div class="platform__head">
+                            <span class="platform__dot"></span>
+                            <h3 class="platform__name">macOS</h3>
+                        </div>
+                        <p class="platform__body">.dmg · Apple silicon (arm64)</p>
+                        <a href="https://github.com/Dame1701/aurena-showcase/releases/download/v1.0.0.0-beta/Aurena-1.0.0-arm64.dmg"
+                           data-cta="download-macos"
+                           class="btn btn--primary btn--md dl-btn">Download</a>
+                    </div>
+                    <div class="card dl-card">
+                        <div class="platform__head">
+                            <span class="platform__dot"></span>
+                            <h3 class="platform__name">Windows</h3>
+                        </div>
+                        <p class="platform__body">.zip · x64</p>
+                        <a href="https://github.com/Dame1701/aurena-showcase/releases/download/v1.0.0.0-beta/Aurena-1.0.0-win-x64.zip"
+                           data-cta="download-windows"
+                           class="btn btn--primary btn--md dl-btn">Download</a>
+                    </div>
+                </div>
+
+                <p class="dl-note">All builds are published on
+                    <a href="https://github.com/Dame1701/aurena-showcase/releases" target="_blank"
+                       rel="noopener noreferrer" class="link-accent">GitHub Releases</a>.</p>
+
+                <div class="dl-video-block" data-reveal>
+                    <div class="eyebrow">// Quickstart</div>
+                    <h3 class="h3-fluid">New here? Watch the 2-minute quickstart.</h3>
+                    <div class="dl-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/_dlzAdTwfMc?start=58"
+                                title="Aurena quickstart" loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -573,8 +633,8 @@
                     <span class="footer__tag">Own your music. Play it anywhere.</span>
                 </div>
                 <div class="footer__links">
-                    <a href="#">Download</a>
-                    <a href="#">GitHub</a>
+                    <a href="#download">Download</a>
+                    <a href="https://github.com/Dame1701/aurena-showcase" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a href="#pi">Features</a>
                     <a href="#specs">Specs</a>
                 </div>
