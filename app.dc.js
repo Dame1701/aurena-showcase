@@ -126,10 +126,11 @@ class Component extends DCLogic {
       retroFeatures: [
         { title: 'Commodore 64 SID', body: 'cycle-accurate playback that is HVSC & STIL aware, so the High Voltage SID Collection plays with its song-length and info metadata intact.' },
         { title: '100+ tracker / module formats', body: 'MOD, XM, IT, S3M and the wider libxmp family, plus AHX/THX/HVL and TFMX. If it came off an Amiga, Atari or a demoscene release, it probably plays.' },
+        { title: 'AY sound chip', body: 'ZX Spectrum and Amstrad CPC tracks, including sample-based tunes, with the target machine auto-detected so each track plays as it should.' },
         { title: 'First-class citizens', body: 'retro tracks scan, browse, queue and go into playlists just like everything else. Mix a SID tune and a FLAC in the same playlist.' }
       ],
 
-      retroFormats: ['SID','MOD','XM','IT','S3M','AHX/THX','HVL','TFMX'].map(n => ({ name: n })),
+      retroFormats: ['SID','AY','MOD','XM','IT','S3M','AHX/THX','HVL','TFMX'].map(n => ({ name: n })),
 
       playlistFeatures: [
         { title: 'Manual playlists', body: 'curate by hand with drag-and-drop reordering.' },
