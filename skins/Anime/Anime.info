@@ -1,0 +1,14 @@
+{
+  "name": "Anime",
+  "author": "Damien Green",
+  "description": "An anime-inspired skin for Aurena.",
+  "version": "1.0",
+  "screenshots": {
+    "Headline.png": "The album wall — your library as a grid of covers",
+    "Gallery1.png": "Retro formats & audio settings panel",
+    "Gallery2.png": "Now playing with the 10-band equaliser open",
+    "Gallery3.png": "Album track listing with full-art background",
+    "Gallery4.png": "Podcast subscriptions view",
+    "Gallery5.png": "Playlist view over the artwork backdrop"
+  }
+}
