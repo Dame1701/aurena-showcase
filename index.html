@@ -61,7 +61,7 @@
             <div class="vu-field" aria-hidden="true">
                 <sc-for list="{{ vuBars }}" as="b" hint-placeholder-count="48">
                     <span class="vu-bar"
-                          style="animation:auVu {{ b.dur }} ease-in-out infinite;animation-delay:{{ b.delay }};"></span>
+                          style="--vu-dur:{{ b.dur }};--vu-delay:{{ b.delay }};"></span>
                 </sc-for>
             </div>
 
@@ -78,10 +78,8 @@
                     about their collection — from lossless FLAC to Commodore&nbsp;64 SID, on your desktop, your phone,
                     and your hi-fi.</p>
                 <div class="btn-row">
-                    <a href="#download" data-cta="download" class="btn btn--primary btn--md"
-                       style-hover="box-shadow:0 14px 48px rgba(244,242,238,.2),0 0 34px rgba(142,114,242,.28);transform:translateY(-1px);">Download</a>
-                    <a href="#pi" class="btn btn--ghost btn--md"
-                       style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">See
+                    <a href="#download" data-cta="download" class="btn btn--primary btn--md">Download</a>
+                    <a href="#pi" class="btn btn--ghost btn--md">See
                         the features ↓</a>
                 </div>
             </div>
@@ -554,12 +552,10 @@
                 <p class="cta__sub">Aurena is free. It's local-first. And it's built for people who give a damn about
                     their collection.</p>
                 <div class="btn-row">
-                    <a href="#download" data-cta="download-final" class="btn btn--primary btn--lg"
-                       style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Download
+                    <a href="#download" data-cta="download-final" class="btn btn--primary btn--lg">Download
                         for Linux / Windows / macOS</a>
                     <a href="https://github.com/Dame1701/aurena-showcase" target="_blank" rel="noopener noreferrer"
-                       data-cta="follow" class="btn btn--ghost btn--lg"
-                       style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">★
+                       data-cta="follow" class="btn btn--ghost btn--lg">★
                         Follow the project</a>
                 </div>
                 <p class="cta__note">Found a bug or have an idea? Feedback directly shapes where Aurena goes next.</p>
@@ -638,12 +634,10 @@
                 </div>
                 <div class="btn-row" data-reveal>
                     <a href="https://github.com/Dame1701/aurena-showcase/issues" target="_blank"
-                       rel="noopener noreferrer" data-cta="report-issue" class="btn btn--primary btn--lg"
-                       style-hover="box-shadow:0 16px 56px rgba(244,242,238,.22),0 0 40px rgba(142,114,242,.3);transform:translateY(-1px);">Report
+                       rel="noopener noreferrer" data-cta="report-issue" class="btn btn--primary btn--lg">Report
                         an issue</a>
                     <a href="https://github.com/Dame1701/aurena-showcase/issues/new" target="_blank"
-                       rel="noopener noreferrer" data-cta="new-issue" class="btn btn--ghost btn--lg"
-                       style-hover="border-color:rgba(142,114,242,.95);box-shadow:0 0 28px rgba(142,114,242,.38),inset 0 0 18px rgba(142,114,242,.1);">Open
+                       rel="noopener noreferrer" data-cta="new-issue" class="btn btn--ghost btn--lg">Open
                         a new request</a>
                 </div>
             </div>

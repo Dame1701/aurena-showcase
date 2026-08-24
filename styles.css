@@ -3,9 +3,9 @@
    Extracted from the previously inline styles in index.html.
    Organised as: design tokens → base/reset → keyframes → layout → components
    → section-specific pieces. Reusable classes are favoured over one-offs.
-   Note: hover effects are driven by `style-hover` attributes in index.html,
-   which the support.js runtime compiles into real :hover rules — so they are
-   intentionally NOT duplicated here.
+   All styling lives here: hover states are real :hover rules and the VU bars
+   read their per-bar timing from --vu-dur / --vu-delay custom properties set
+   inline in the markup.
    ========================================================================== */
 
 /* ---------- Design tokens ---------- */
@@ -223,6 +223,18 @@ strong { color: var(--ink); font-weight: 700; }
   box-shadow: 0 0 18px rgba(142,114,242,.14);
 }
 .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn--primary.btn--md:hover {
+  box-shadow: 0 14px 48px rgba(244,242,238,.2), 0 0 34px rgba(142,114,242,.28);
+  transform: translateY(-1px);
+}
+.btn--primary.btn--lg:hover {
+  box-shadow: 0 16px 56px rgba(244,242,238,.22), 0 0 40px rgba(142,114,242,.3);
+  transform: translateY(-1px);
+}
+.btn--ghost:hover {
+  border-color: rgba(142,114,242,.95);
+  box-shadow: 0 0 28px rgba(142,114,242,.38), inset 0 0 18px rgba(142,114,242,.1);
+}
 
 /* ---------- Cards / panels / chips ---------- */
 .card {
@@ -414,6 +426,8 @@ strong { color: var(--ink); font-weight: 700; }
   border-radius: 4px;
   filter: drop-shadow(0 0 5px rgba(142,114,242,.7));
   transform-origin: bottom;
+  animation: auVu var(--vu-dur) ease-in-out infinite;
+  animation-delay: var(--vu-delay);
 }
 .hero__inner { position: relative; max-width: 980px; margin: 0 auto; text-align: center; }
 .hero__brand {
