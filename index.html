@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-    <script src="./support.js"></script>
+    <script src="./scripts/support.js"></script>
     <title>Aurena</title>
 </head>
 <body>
@@ -677,12 +677,12 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script></script>
 <script>
-    // Component logic lives in app.dc.js. The runtime reads it from this data
-    // island's text content, so load it synchronously before boot (DOMContentLoaded).
+    // Component logic lives in scripts/app.dc.js. The runtime reads it from this
+    // data island's text content, so load it synchronously before boot (DOMContentLoaded).
     (function () {
         try {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'app.dc.js', false);
+            xhr.open('GET', 'scripts/app.dc.js', false);
             xhr.send();
             if (xhr.status >= 200 && xhr.status < 300) {
                 document.querySelector('script[data-dc-script]').textContent = xhr.responseText;
